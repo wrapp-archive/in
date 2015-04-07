@@ -7,8 +7,8 @@ import "sort"
 // This is fast  for small slices, if you have a larger slice you are probably
 // better off using a map.
 
-// Strings check existence of a string in a string slice
-func Strs(haystack []string, needle string) bool {
+// Strings checks existence of a string in a string slice
+func Strings(haystack []string, needle string) bool {
 	sort.Strings(haystack)
 	i := sort.SearchStrings(haystack, needle)
 	return i < len(haystack) && haystack[i] == needle

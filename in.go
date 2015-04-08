@@ -1,7 +1,5 @@
 package in
 
-import "sort"
-
 // Convenience functions for golangs silly lack of set operations on slices.
 // The lists to search in will get sorted as a side-effect
 // This is fast  for small slices, if you have a larger slice you are probably
@@ -9,14 +7,50 @@ import "sort"
 
 // Strings checks existence of a string in a string slice
 func Strings(haystack []string, needle string) bool {
-	sort.Strings(haystack)
-	i := sort.SearchStrings(haystack, needle)
-	return i < len(haystack) && haystack[i] == needle
+	for _, elem := range haystack {
+		if elem == needle {
+			return true
+		}
+	}
+	return false
 }
 
 // Ints checks existence of an int in an int slice
 func Ints(haystack []int, needle int) bool {
-	sort.Ints(haystack)
-	i := sort.SearchInts(haystack, needle)
-	return i < len(haystack) && haystack[i] == needle
+	for _, elem := range haystack {
+		if elem == needle {
+			return true
+		}
+	}
+	return false
+}
+
+// StringSubset checks if needles is a subset of haystack
+func StringsSubset(haystack []string, needles []string) bool {
+	set := make(map[string]bool)
+	for _, value := range haystack {
+		set[value] = true
+	}
+
+	for _, value := range needles {
+		if _, found := set[value]; !found {
+			return false
+		}
+	}
+	return true
+}
+
+// IntSubset checks if needles is a subset of haystack
+func IntsSubset(haystack []int, needles []int) bool {
+	set := make(map[int]bool)
+	for _, value := range haystack {
+		set[value] = true
+	}
+
+	for _, value := range needles {
+		if _, found := set[value]; !found {
+			return false
+		}
+	}
+	return true
 }

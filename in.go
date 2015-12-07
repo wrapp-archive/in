@@ -54,3 +54,33 @@ func IntsSubset(haystack []int, needles []int) bool {
 	}
 	return true
 }
+
+//StringsIntersection checks whether there are elements common to haystack and needles
+func StringsIntersection(haystack []string, needles []string) bool {
+	set := make(map[string]bool)
+	for _, value := range haystack {
+		set[value] = true
+	}
+
+	for _, value := range needles {
+		if set[value] {
+			return true
+		}
+	}
+	return false
+}
+
+//IntsIntersection checks whether there are elements common to haystack and needles
+func IntsIntersection(haystack []int, needles []int) bool {
+	set := make(map[int]bool)
+	for _, value := range haystack {
+		set[value] = true
+	}
+
+	for _, value := range needles {
+		if set[value] {
+			return true
+		}
+	}
+	return false
+}

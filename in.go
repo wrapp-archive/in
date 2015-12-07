@@ -56,13 +56,19 @@ func IntsSubset(haystack []int, needles []int) bool {
 }
 
 //StringsIntersection checks whether there are elements common to haystack and needles
-func StringsIntersection(haystack []string, needles []string) bool {
+func StringsIntersection(s1 []string, s2 []string) bool {
+	var haystack, needles []string
+	if len(s1) >= len(s2) {
+		haystack, needles = s1, s2
+	} else {
+		haystack, needles = s2, s1
+	}
 	set := make(map[string]bool)
-	for _, value := range haystack {
+	for _, value := range needles {
 		set[value] = true
 	}
 
-	for _, value := range needles {
+	for _, value := range haystack {
 		if set[value] {
 			return true
 		}
@@ -71,13 +77,19 @@ func StringsIntersection(haystack []string, needles []string) bool {
 }
 
 //IntsIntersection checks whether there are elements common to haystack and needles
-func IntsIntersection(haystack []int, needles []int) bool {
+func IntsIntersection(s1 []int, s2 []int) bool {
+	var haystack, needles []int
+	if len(s1) >= len(s2) {
+		haystack, needles = s1, s2
+	} else {
+		haystack, needles = s2, s1
+	}
 	set := make(map[int]bool)
-	for _, value := range haystack {
+	for _, value := range needles {
 		set[value] = true
 	}
 
-	for _, value := range needles {
+	for _, value := range haystack {
 		if set[value] {
 			return true
 		}
